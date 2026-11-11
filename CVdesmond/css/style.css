@@ -1,0 +1,469 @@
+/* =====================================================================
+   INHOUDSOPGAVE
+   1. Instellingen (kleuren, fonts — PAS HIER AAN)
+   2. Basis / reset
+   3. Navigatie (dossier-tabs)
+   4. Layout secties
+   5. Onderdeel: over mij
+   6. Onderdeel: tijdlijn (opleiding/werk)
+   7. Onderdeel: download-knop
+   8. Onderdeel: kaarten (hobby's, projecten, stage)
+   9. Footer
+   10. Responsive (tablet / mobiel)
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. INSTELLINGEN
+   Wil je een andere kleur of lettertype? Verander het hier —
+   de rest van het bestand gebruikt deze variabelen automatisch.
+   --------------------------------------------------------------------- */
+:root {
+  /* kleuren */
+  --paper: #eef0ea;       /* achtergrond */
+  --paper-raised: #ffffff;/* kaarten / vlakken die "boven" liggen */
+  --ink: #1c2321;         /* hoofdtekst */
+  --ink-soft: #4b5563;    /* subtekst */
+  --folder: #d9b679;      /* dossier-tab kleur (kraftpapier) */
+  --folder-active: #c99f53;
+  --tag: #c1440e;         /* accentkleur voor labels/links */
+  --tag-dark: #9c360b;
+  --line: #c7ccc2;        /* dunne lijntjes */
+
+  /* typografie */
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Consolas", monospace;
+
+  /* maten */
+  --max-width: 1080px;
+  --radius: 6px;
+}
+
+/* ---------------------------------------------------------------------
+   2. BASIS / RESET
+   --------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px; /* zodat secties niet achter de vaste nav verdwijnen */
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--tag-dark);
+}
+
+a:hover {
+  color: var(--tag);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* zichtbare focus voor toetsenbordgebruikers, verplicht voor toegankelijkheid */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--tag);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------
+   3. NAVIGATIE — "dossier-tabs"
+   --------------------------------------------------------------------- */
+.tabbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1.5rem;
+  background: var(--ink);
+}
+
+.tabbar__brand {
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.tabbar__brand-mono {
+  font-family: var(--font-mono);
+  color: var(--folder);
+  font-weight: 400;
+  margin-right: 0.3em;
+}
+
+.tabnav {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.tab {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--folder);
+  padding: 0.55rem 0.9rem 0.45rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transform: translateY(4px);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.tab:hover {
+  transform: translateY(0);
+  background: var(--folder-active);
+}
+
+/* de tab die bij de sectie hoort waar je nu naar scrolt springt "naar voren" */
+.tab.is-active {
+  background: var(--paper-raised);
+  transform: translateY(0);
+  font-weight: 600;
+}
+
+.tabbar__toggle {
+  display: none; /* alleen zichtbaar op mobiel, zie media query onderaan */
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0.4rem;
+  cursor: pointer;
+}
+
+.tabbar__toggle span {
+  width: 22px;
+  height: 2px;
+  background: var(--paper);
+}
+
+/* ---------------------------------------------------------------------
+   4. LAYOUT SECTIES
+   --------------------------------------------------------------------- */
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+  scroll-margin-top: 70px;
+}
+
+.section--alt {
+  position: relative;
+  z-index: 0;
+}
+
+.section--alt::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  background: var(--paper-raised);
+  z-index: -1;
+}
+
+.section__label {
+  font-family: var(--font-mono);
+  color: var(--tag-dark);
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin: 0 0 0.3rem;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  margin: 0 0 1.5rem;
+}
+
+.section__intro {
+  color: var(--ink-soft);
+  max-width: 60ch;
+  margin-top: -0.8rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------------------------------------------------------------------
+   5. OVER MIJ
+   --------------------------------------------------------------------- */
+.about {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.about__photo {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 4px solid var(--paper-raised);
+  outline: 1px solid var(--line);
+}
+
+.about__intro {
+  font-size: 1.05rem;
+  max-width: 60ch;
+}
+
+.about__facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem 2rem;
+  margin: 1.5rem 0 0;
+}
+
+.about__facts div {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.about__facts dt {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+.about__facts dd {
+  margin: 0.15rem 0 0;
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------------------------
+   6. TIJDLIJN — opleiding & werkervaring
+   --------------------------------------------------------------------- */
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+}
+
+.timeline-heading {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0 0 1rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-left: 2px solid var(--folder);
+}
+
+.timeline__item {
+  display: flex;
+  flex-direction: column;
+  padding: 0 0 1.4rem 1.2rem;
+}
+
+.timeline__period {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--tag-dark);
+}
+
+.timeline__title {
+  font-weight: 600;
+  margin-top: 0.15rem;
+}
+
+.timeline__place {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---------------------------------------------------------------------
+   7. DOWNLOAD-KNOP (online cv)
+   --------------------------------------------------------------------- */
+.download-btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--folder);
+  padding: 0.9rem 1.6rem;
+  border-radius: var(--radius);
+  transition: background 0.15s ease;
+}
+
+.download-btn:hover {
+  background: var(--folder-active);
+  color: var(--ink);
+}
+
+/* ---------------------------------------------------------------------
+   8. KAARTEN — hobby's, projecten, stage
+   --------------------------------------------------------------------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  padding-bottom: 1.2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.section--alt .card {
+  background: var(--paper);
+}
+
+.card__image {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  background: var(--line); /* placeholder-kleur zolang er geen echte foto staat */
+}
+
+.card__tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--tag-dark);
+  margin: 0.9rem 1rem 0;
+}
+
+.card__title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  margin: 0.3rem 1rem 0;
+}
+
+.card__text {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  margin: 0.5rem 1rem 0;
+}
+
+.card__link {
+  margin: 0.8rem 1rem 0;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---------------------------------------------------------------------
+   9. FOOTER
+   --------------------------------------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* ---------------------------------------------------------------------
+   10. RESPONSIVE
+   --------------------------------------------------------------------- */
+
+/* Tablet */
+@media (max-width: 800px) {
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .about__photo {
+    width: 160px;
+    height: 160px;
+  }
+}
+
+/* Smartphone: klapmenu i.p.v. rij tabs */
+@media (max-width: 640px) {
+  .tabbar__toggle {
+    display: flex;
+  }
+
+  .tabnav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    background: var(--ink);
+    padding: 0.5rem 1rem 1rem;
+  }
+
+  .tabnav.is-open {
+    display: flex;
+  }
+
+  .tab {
+    border-radius: var(--radius);
+    transform: none;
+    text-align: left;
+  }
+
+  .about__facts {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 3rem 1.2rem;
+  }
+  /* ---------------------------------------------------------------------
+     11. DARK MODE
+     --------------------------------------------------------------------- */
+  html.dark {
+    --paper: #14181f;
+    --paper-raised: #1c222c;
+    --ink: #eef0ea;
+    --ink-soft: #a3adc2;
+    --line: #333c4c;
+  }
+
+  .theme-toggle {
+    background: none;
+    border: 1px solid var(--folder);
+    color: var(--paper);
+    border-radius: var(--radius);
+    padding: 0.4rem 0.7rem;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+}
