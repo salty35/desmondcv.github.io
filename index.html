@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desmond — Portfolio</title>
+  <meta name="description" content="Online portfolio van Desmond, student ICT. CV, projecten, stage en meer.">
+
+  <!-- Google Fonts: mag weg als je liever systeemfonts gebruikt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- =====================================================
+       NAVIGATIE — "dossier-tabs"
+       Wil je een sectie hernoemen of van volgorde wisselen?
+       Doe dat hier ÉN bij de bijbehorende <section id="..."> hieronder.
+       ===================================================== -->
+  <header class="tabbar">
+    <div class="tabbar__brand">
+      <span class="tabbar__brand-mono">DOSSIER /</span> Desmond
+    </div>
+    <button class="tabbar__toggle" id="menuToggle" aria-expanded="false" aria-controls="tabnav">
+      <span></span><span></span><span></span>
+      <span class="sr-only">Menu openen</span>
+    </button>
+    <nav class="tabnav" id="tabnav">
+      <a href="#over-mij" class="tab">01 Over mij</a>
+      <a href="#opleiding-ervaring" class="tab">02 CV</a>
+      <a href="#online-cv" class="tab">03 Download</a>
+      <a href="#projecten" class="tab">04 Projecten</a>
+      <a href="#stage" class="tab">05 Stage</a>
+      <a href="#hobbies" class="tab">06 Hobby's</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         SECTIE 01 — OVER MIJ / PERSOONSGEGEVENS
+         Vervang: foto, naam, gegevens en tekst hieronder.
+         ===================================================== -->
+    <section id="over-mij" class="section" aria-labelledby="over-mij-titel">
+      <p class="section__label">DOSSIER 01</p>
+      <h1 id="over-mij-titel" class="section__title">Over mij</h1>
+
+      <div class="about">
+        <img
+          class="about__photo"
+          src="bestanden/images/profiel/profielfoto.jpg"
+          alt="Portretfoto van Jouw Naam">
+
+        <div class="about__info">
+          <p class="about__intro">
+            Welkom op mijn CV website, ik ben Desmond en studeer software developer. 
+            Ik heb een lang lontje en kan goed omgaan met stressvolle situaties. 
+            Ik woon in Alkmaar en hoop graag van u te horen.
+          </p>
+
+          <dl class="about__facts">
+            <div><dt>Naam</dt><dd>Desmond Nientied</dd></div>
+            <div><dt>Geboortedatum</dt><dd>6 Oktober 2004</dd></div>
+            <div><dt>E-mail</dt><dd><a href="https://outlook.office.com" style="text-decoration:none" >198514@novacollege.nl</a></dd></div>
+            <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/desmond-nientied-124b3234a/" target="_blank" style="text-decoration:none" rel="noopener">linkedin.com/in/desmond-nientied</a></dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTIE 02 — OPLEIDINGEN EN WERKERVARINGEN
+         Kopieer een .timeline__item om een regel toe te voegen.
+         ===================================================== -->
+    <section id="opleiding-ervaring" class="section" aria-labelledby="cv-titel">
+      <p class="section__label">DOSSIER 02</p>
+      <h2 id="cv-titel" class="section__title">Opleidingen &amp; werkervaring</h2>
+
+      <div class="timeline-grid">
+        <div>
+          <h3 class="timeline-heading">Opleidingen</h3>
+          <ul class="timeline">
+
+            <!-- COPY-PASTE HIERONDER OM EEN OPLEIDING TOE TE VOEGEN -->
+            <li class="timeline__item">
+              <span class="timeline__period">2024 — 2027</span>
+              <span class="timeline__title">MBO Software Development, niveau 4</span>
+              <span class="timeline__place">Naam ROC / Nova College, Beverwijk</span>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__period">2021 — 2024</span>
+              <span class="timeline__title">school, niveau 4</span>
+              <span class="timeline__place">Naam ROC / overgestapt naar MBO Software Development.</span>
+            </li>
+            <li class="timeline__item">
+              <span class="timeline__period">2017 — 2021</span>
+              <span class="timeline__title">VMBO-BBS</span>
+              <span class="timeline__place">Naam ROC / Van der Meij College, Alkmaar</span>
+            </li>
+            <!-- EINDE COPY-PASTE BLOK -->
+
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="timeline-heading">Werkervaring</h3>
+          <ul class="timeline">
+
+            <!-- COPY-PASTE HIERONDER OM EEN BAAN TOE TE VOEGEN -->
+            <li class="timeline__item">
+              <span class="timeline__period">2021 — 2023</span>
+              <span class="timeline__title">Allround Medewerker</span>
+              <span class="timeline__place">Kwalitaria — Alkmaar — Keuken & Bezorging.</span>
+            </li>
+            <!-- EINDE COPY-PASTE BLOK -->
+
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTIE 03 — ONLINE CV MET DOWNLOAD
+         Zet je eigen cv.pdf in de map /bestanden en pas de bestandsnaam
+         hieronder aan als die anders heet.
+         ===================================================== -->
+    <section id="online-cv" class="section" aria-labelledby="download-titel">
+      <p class="section__label">DOSSIER 03</p>
+      <h2 id="download-titel" class="section__title">Mijn cv downloaden</h2>
+      <p class="section__intro">
+        REFERENTIES<br>
+        •	Jeroen,<br>
+        +31235303313<br>
+        jezonneveld@novacollege.nl<br>
+        •	Wouter,<br>
+        +31235303099<br>
+        whezel@novacollege.nl<br><br>
+
+        Liever een document om te printen of door te sturen? Download hieronder mijn cv als PDF.
+      </p>
+      <a class="download-btn" href="bestanden/CVPDF/desmondcv.pdf" download>
+        ⬇ Download cv (PDF)
+      </a>
+    </section>
+    
+    <!-- =====================================================
+         SECTIE 04 — PROJECTEN
+         Kopieer een .card om een project toe te voegen.
+         Gebruik project__link alleen als er een live link/repo is.
+         ===================================================== -->
+    <section id="projecten" class="section" aria-labelledby="projecten-titel">
+      <p class="section__label">DOSSIER 04</p>
+      <h2 id="projecten-titel" class="section__title">Projecten</h2>
+      <p class="section__intro">School-, stage- en eigen projecten.</p>
+
+      <div class="card-grid">
+
+        <!-- COPY-PASTE HIERONDER OM EEN PROJECT TOE TE VOEGEN -->
+        <article class="card">
+          <img class="card__image" src="bestanden/images/projecten/project1.jpg" alt="Screenshot van project 1">
+          <p class="card__tag">Schoolproject</p>
+          <h3 class="card__title">Naam project</h3>
+          <p class="card__text">als ik een project gedaan heb komt het hier</p> <!-- Wat heb je gemaakt, met welke technieken, en wat was jouw rol?-->
+          <a class="card__link" href="https://github.com/jouw-account/project-1" target="_blank" rel="noopener">Bekijk op GitHub →</a>
+        </article>
+
+        <article class="card">
+          <img class="card__image" src="bestanden/images/projecten/project2.jpg" alt="Screenshot van project 2">
+          <p class="card__tag">Eigen project</p>
+          <h3 class="card__title">Naam project</h3>
+          <p class="card__text">als ik een eindproject gedaan heb komt het hier.</p>
+          <a class="card__link" href="#" target="_blank" rel="noopener">Bekijk project →</a>
+        </article>
+        <!-- EINDE COPY-PASTE BLOK -->
+
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTIE 05 — STAGE / BPV
+         Kopieer een .card om een stage-ervaring toe te voegen.
+         ===================================================== -->
+    <section id="stage" class="section" aria-labelledby="stage-titel">
+      <p class="section__label">DOSSIER 05</p>
+      <h2 id="stage-titel" class="section__title">Stage / BPV</h2>
+
+      <div class="card-grid">
+
+        <!-- COPY-PASTE HIERONDER OM EEN STAGE TOE TE VOEGEN -->
+        <article class="card">
+          <img class="card__image" src="bestanden/images/stage/bedrijf1.jpg" alt="Foto of logo van het stagebedrijf">
+          <p class="card__tag">maand jaar — maand jaar</p>
+          <h3 class="card__title">Naam bedrijf</h3>
+          <p class="card__text">
+            Ik moet nog een stage doen als ik hem gedaan heb dan komt het hier te staan.
+          </p>
+        </article>
+        <!-- EINDE COPY-PASTE BLOK -->
+
+      </div>
+    </section>
+
+  </main>
+  
+  <!-- =====================================================
+     SECTIE 06 — HOBBY'S EN SPORT
+     Kopieer een .card om een hobby toe te voegen.
+     ===================================================== -->
+  <section id="hobbies" class="section" aria-labelledby="hobbies-titel">
+    <p class="section__label">DOSSIER 06</p>
+    <h2 id="hobbies-titel" class="section__title">Hobby's &amp; sport</h2>
+
+    <div class="card-grid">
+
+      <!-- COPY-PASTE HIERONDER OM EEN HOBBY TOE TE VOEGEN -->
+      <article class="card">
+        <img class="card__image" src="bestanden/images/hobbies/tekenen_fisa_en_gaming.jpg" alt="Omschrijving van foto bij hobby 1">
+        <h3 class="card__title">gaming, tekenen, en ik hou ook wel van een feestje.</h3>
+        <p class="card__text">Gaming,
+          Ik game graag op de pc, vooral survivalgames zoals Minecraft, RimWorld en Terraria — bouwen is voor mij het leukste onderdeel.
+          Speel casual, soms alleen om te ontspannen, soms met vrienden. Op termijn zou ik weleens een eigen game willen maken, wat ook mooi aansluit bij mijn interesse in software development.
+
+          Tekenen,
+          Ik teken vooral anime, auto's en dieren, maar pak ook andere onderwerpen op als ik er zin in heb. Heb een tekentablet, maar werk eigenlijk liever op papier — daar zit meer gevoel in.
+          Ik deel mijn tekeningen niet online. maar je kan vraagen of je het kan zien.
+
+          Uitgaan / feestjes,
+          Ik ga graag naar festivals, met een voorkeur voor house en techno, maar ik luister eigenlijk alles — rock, metal, rap, noem maar op.
+          Volgens mij is er gewoon goede en slechte muziek, niet goede en slechte genres. Regel ook regelmatig zelf een uitje voor mezelf en mijn vrienden.</p>
+      </article>
+
+      <article class="card">
+        <img class="card__image" src="bestanden/images/hobbies/scouting_en_juijitsu.jpg" alt="Omschrijving van foto bij hobby 2">
+        <h3 class="card__title">scouting en jiu jitsu</h3>
+        <p class="card__text">Scouting
+          Sinds mijn dertiende actief bij de scouting, waar ik heb geleerd om samen te werken, verantwoordelijkheid te nemen en dingen te organiseren tijdens kampen en activiteiten.
+          Dit heeft mijn organisatievermogen en teamgevoel flink versterkt.
+
+          Jiu Jitsu
+          Beoefen al sinds mijn zevende jiu jitsu, een sport die discipline, doorzettingsvermogen en probleemoplossend denken vraagt — je moet steeds strategisch reageren op je tegenstander.
+          Naast de fysieke uitdaging is het goed voor me om fit te blijven.</p>
+      </article>
+      <!-- EINDE COPY-PASTE BLOK -->
+
+    </div>
+  </section>
+
+  <!-- =====================================================
+     Darkmode knop.
+     ===================================================== -->
+  <div class="tabbar__brand">
+    <span class="tabbar__brand-mono">DOSSIER /</span> Desmond
+  </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Donkere modus aan/uit">🌙</button>
+
+  <footer class="footer">
+    <p>© <span id="jaar"></span> Desmond Nientied — gebouwd met HTML, CSS & Javascript, gehost op GitHub Pages.</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
