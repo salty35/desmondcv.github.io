@@ -100,7 +100,7 @@ button:focus-visible {
   z-index: 50;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
   padding: 0.9rem 1.5rem;
   background: var(--ink);
@@ -112,6 +112,7 @@ button:focus-visible {
   font-weight: 700;
   font-size: 1.1rem;
   white-space: nowrap;
+  margin-right: auto; /* duwt menu en knop naar rechts */
 }
 
 .tabbar__brand-mono {
@@ -445,25 +446,53 @@ button:focus-visible {
   .section {
     padding: 3rem 1.2rem;
   }
-  /* ---------------------------------------------------------------------
-     11. DARK MODE
-     --------------------------------------------------------------------- */
-  html.dark {
-    --paper: #14181f;
-    --paper-raised: #1c222c;
-    --ink: #eef0ea;
-    --ink-soft: #a3adc2;
-    --line: #333c4c;
-  }
+}
 
-  .theme-toggle {
-    background: none;
-    border: 1px solid var(--folder);
-    color: var(--paper);
-    border-radius: var(--radius);
-    padding: 0.4rem 0.7rem;
-    font-size: 1rem;
-    cursor: pointer;
-    line-height: 1;
-  }
+/* ---------------------------------------------------------------------
+   11. DARK MODE (staat bewust BUITEN de @media blokken hierboven)
+   --------------------------------------------------------------------- */
+html.dark {
+  --paper: #14181f;
+  --paper-raised: #1c222c;
+  --ink: #eef0ea;
+  --ink-soft: #a3adc2;
+  --line: #333c4c;
+  --tag: #f0a07c;
+  --tag-dark: #e8855a;
+}
+
+/* de balk bovenaan blijft donker, de tabs houden donkere tekst */
+html.dark .tabbar,
+html.dark .tabnav {
+  background: #0d1015;
+}
+
+html.dark .tabbar__brand,
+html.dark .theme-toggle {
+  color: #eef0ea;
+}
+
+html.dark .tabbar__toggle span {
+  background: #eef0ea;
+}
+
+html.dark .tab,
+html.dark .download-btn {
+  color: #1c2321;
+}
+
+html.dark .tab.is-active {
+  color: var(--ink);
+}
+
+/* de dark-mode knop zelf */
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--folder);
+  color: var(--paper);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1;
 }
