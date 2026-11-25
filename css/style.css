@@ -1,56 +1,80 @@
 /* =====================================================================
    INHOUDSOPGAVE
-   1. Instellingen (kleuren, fonts — PAS HIER AAN)
-   2. Basis / reset
-   3. Navigatie (dossier-tabs)
-   4. Layout secties
-   5. Onderdeel: over mij
-   6. Onderdeel: tijdlijn (opleiding/werk)
-   7. Onderdeel: download-knop
-   8. Onderdeel: kaarten (hobby's, projecten, stage)
+   1. Instellingen (kleuren, fonts: PAS HIER AAN)
+   2. Fonts (staan als bestanden in /fonts, geen Google Fonts nodig)
+   3. Basis
+   4. Navigatie (dossier-tabs)
+   5. Secties
+   6. Over mij (het dossierblad)
+   7. Cv (opleidingen en werkervaring)
+   8. Hobby's
    9. Footer
-   10. Responsive (tablet / mobiel)
+   10. Donkere modus
    ===================================================================== */
 
 /* ---------------------------------------------------------------------
    1. INSTELLINGEN
-   Wil je een andere kleur of lettertype? Verander het hier —
-   de rest van het bestand gebruikt deze variabelen automatisch.
+   Dit zijn Desmonds eigen kleuren. De rest van het bestand gebruikt
+   alleen deze variabelen.
    --------------------------------------------------------------------- */
 :root {
   /* kleuren */
-  --paper: #eef0ea;       /* achtergrond */
-  --paper-raised: #ffffff;/* kaarten / vlakken die "boven" liggen */
-  --ink: #1c2321;         /* hoofdtekst */
-  --ink-soft: #4b5563;    /* subtekst */
-  --folder: #d9b679;      /* dossier-tab kleur (kraftpapier) */
+  --paper: #eef0ea;        /* achtergrond */
+  --paper-raised: #ffffff; /* het dossierblad, actieve tab */
+  --ink: #1c2321;          /* hoofdtekst en de balk bovenaan */
+  --ink-soft: #4b5563;     /* subtekst */
+  --folder: #d9b679;       /* dossier-tabs en de downloadknop (kraftpapier) */
   --folder-active: #c99f53;
-  --tag: #c1440e;         /* accentkleur voor labels/links */
-  --tag-dark: #9c360b;
-  --line: #c7ccc2;        /* dunne lijntjes */
+  --tag: #c1440e;          /* accent: focusrand, kleine details */
+  --tag-dark: #9c360b;     /* links en jaartallen (leesbaar op licht) */
+  --line: #c7ccc2;         /* dunne lijnen */
+  --bar: #1c2321;          /* balk bovenaan */
+  --bar-text: #eef0ea;
 
   /* typografie */
-  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
-  --font-body: "Inter", "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", "Consolas", monospace;
+  --font-display: "Familjen Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Consolas", monospace;
 
   /* maten */
-  --max-width: 1080px;
+  --max-width: 1040px;
   --radius: 6px;
+  --bar-height: 64px;
 }
 
 /* ---------------------------------------------------------------------
-   2. BASIS / RESET
+   2. FONTS
    --------------------------------------------------------------------- */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+@font-face {
+  font-family: "Familjen Grotesk";
+  src: url("../fonts/familjen-grotesk-latin-wght-normal.woff2") format("woff2");
+  font-weight: 400 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Public Sans";
+  src: url("../fonts/public-sans-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../fonts/jetbrains-mono-latin-wght-normal.woff2") format("woff2");
+  font-weight: 100 800;
+  font-display: swap;
 }
 
+/* ---------------------------------------------------------------------
+   3. BASIS
+   --------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+
 html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 90px; /* zodat secties niet achter de vaste nav verdwijnen */
+  scroll-padding-top: calc(var(--bar-height) + 16px); /* koppen niet achter de balk */
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
 }
 
 body {
@@ -58,284 +82,303 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
+  font-size: 1.0625rem;
   line-height: 1.6;
-  overflow-x: hidden;
 }
 
-img {
-  max-width: 100%;
-  display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
 
-a {
-  color: var(--tag-dark);
-}
+a { color: var(--tag-dark); text-underline-offset: 0.18em; }
+a:hover { color: var(--ink); }
 
-a:hover {
-  color: var(--tag);
-}
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; text-wrap: balance; }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
+:focus-visible { outline: 3px solid var(--tag); outline-offset: 3px; }
+main:focus { outline: none; }
 
-/* zichtbare focus voor toetsenbordgebruikers, verplicht voor toegankelijkheid */
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--tag);
-  outline-offset: 2px;
+.skip {
+  position: fixed;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  background: var(--paper-raised);
+  color: var(--ink);
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
 }
+.skip:focus { top: 12px; }
 
 /* ---------------------------------------------------------------------
-   3. NAVIGATIE — "dossier-tabs"
+   4. NAVIGATIE: dossier-tabs
+   Op de telefoon klapt het menu uit onder de balk; vanaf 860px staan de
+   tabs naast de naam en steken ze uit de onderkant van de balk.
    --------------------------------------------------------------------- */
 .tabbar {
   position: sticky;
   top: 0;
   z-index: 50;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: flex-start;
-  gap: 1rem;
-  padding: 0.9rem 1.5rem;
-  background: var(--ink);
+  gap: 8px 12px;
+  min-height: var(--bar-height);
+  padding: 10px max(16px, env(safe-area-inset-right)) 10px max(16px, env(safe-area-inset-left));
+  background: var(--bar);
 }
 
 .tabbar__brand {
-  color: var(--paper);
+  margin-right: auto;
+  color: var(--bar-text);
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.1rem;
-  white-space: nowrap;
-  margin-right: auto; /* duwt menu en knop naar rechts */
-}
-
-.tabbar__brand-mono {
-  font-family: var(--font-mono);
-  color: var(--folder);
-  font-weight: 400;
-  margin-right: 0.3em;
-}
-
-.tabnav {
-  display: flex;
-  gap: 0.4rem;
-  flex-wrap: wrap;
-}
-
-.tab {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 1.15rem;
   text-decoration: none;
-  color: var(--ink);
-  background: var(--folder);
-  padding: 0.55rem 0.9rem 0.45rem;
-  border-radius: var(--radius) var(--radius) 0 0;
-  transform: translateY(4px);
-  transition: transform 0.15s ease, background 0.15s ease;
+  white-space: nowrap;
 }
+.tabbar__brand:hover { color: var(--folder); }
 
-.tab:hover {
-  transform: translateY(0);
-  background: var(--folder-active);
-}
-
-/* de tab die bij de sectie hoort waar je nu naar scrolt springt "naar voren" */
-.tab.is-active {
-  background: var(--paper-raised);
-  transform: translateY(0);
-  font-weight: 600;
-}
-
-.tabbar__toggle {
-  display: none; /* alleen zichtbaar op mobiel, zie media query onderaan */
-  flex-direction: column;
-  gap: 4px;
+.tabbar__menu,
+.theme-toggle {
+  min-height: 44px;
+  padding: 0 14px;
+  font: 600 0.85rem/1 var(--font-mono);
+  color: var(--bar-text);
   background: none;
-  border: none;
-  padding: 0.4rem;
+  border: 1px solid var(--folder);
+  border-radius: var(--radius);
   cursor: pointer;
 }
+.tabbar__menu:hover,
+.theme-toggle:hover { background: rgba(217, 182, 121, 0.16); }
 
-.tabbar__toggle span {
-  width: 22px;
-  height: 2px;
-  background: var(--paper);
+.tabnav {
+  display: none;
+  order: 3;
+  width: 100%;
+  flex-direction: column;
+  gap: 6px;
+  padding: 6px 0 8px;
+}
+.tabnav.is-open { display: flex; }
+/* zonder JavaScript is het menu altijd open */
+.no-js .tabnav { display: flex; }
+.no-js .tabbar__menu,
+.no-js .theme-toggle { display: none; }
+
+.tab {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--ink);
+  background: var(--folder);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.tab:hover { background: var(--folder-active); color: var(--ink); }
+.tab[aria-current] { background: var(--paper-raised); font-weight: 600; }
+
+@media (min-width: 860px) {
+  .tabbar {
+    flex-wrap: nowrap;
+    padding-bottom: 0;
+    align-items: flex-end;
+  }
+  .tabbar__brand { align-self: center; }
+  .tabbar__menu { display: none; }
+  .theme-toggle { align-self: center; order: 4; margin-left: 8px; }
+  .tabnav {
+    display: flex;
+    order: 2;
+    width: auto;
+    flex-direction: row;
+    gap: 6px;
+    padding: 0;
+  }
+  .tab {
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: var(--radius) var(--radius) 0 0;
+    transform: translateY(4px);
+  }
+  .tab:hover,
+  .tab[aria-current] { transform: translateY(0); }
+  .tab[aria-current] { background: var(--paper); }
+}
+@media (min-width: 860px) and (prefers-reduced-motion: no-preference) {
+  .tab { transition: transform 0.15s ease, background-color 0.15s ease; }
 }
 
 /* ---------------------------------------------------------------------
-   4. LAYOUT SECTIES
+   5. SECTIES
    --------------------------------------------------------------------- */
 .section {
-  max-width: var(--max-width);
+  max-width: calc(var(--max-width) + 2 * 24px);
   margin: 0 auto;
-  padding: 4rem 1.5rem;
-  scroll-margin-top: 70px;
+  padding: 56px max(16px, env(safe-area-inset-right)) 8px max(16px, env(safe-area-inset-left));
 }
-
-.section--alt {
-  position: relative;
-  z-index: 0;
-}
-
-.section--alt::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 100vw;
-  transform: translateX(-50%);
-  background: var(--paper-raised);
-  z-index: -1;
-}
-
-.section__label {
-  font-family: var(--font-mono);
-  color: var(--tag-dark);
-  font-size: 0.8rem;
-  letter-spacing: 0.05em;
-  margin: 0 0 0.3rem;
-}
+.section--first { padding-top: 32px; }
 
 .section__title {
-  font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
-  margin: 0 0 1.5rem;
+  font-size: clamp(1.6rem, 3.2vw, 2.25rem);
+  letter-spacing: -0.015em;
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
 }
 
-.section__intro {
-  color: var(--ink-soft);
-  max-width: 60ch;
-  margin-top: -0.8rem;
-  margin-bottom: 2rem;
+.plain { max-width: 62ch; margin: 0 0 12px; color: var(--ink-soft); }
+
+.textlink { font-weight: 600; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  font: 600 0.95rem/1.2 var(--font-mono);
+  color: var(--ink);
+  background: var(--folder);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.btn:hover { background: var(--folder-active); color: var(--ink); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  margin: 24px 0 0;
 }
 
 /* ---------------------------------------------------------------------
-   5. OVER MIJ
+   6. OVER MIJ: het dossierblad
+   Een wit vel op de grijsgroene achtergrond, met de foto als pasfoto.
    --------------------------------------------------------------------- */
-.about {
+.sheet {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 2.5rem;
-  align-items: start;
+  gap: 24px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 20px 28px;
 }
 
-.about__photo {
-  width: 220px;
-  height: 220px;
+.sheet__photo { width: 180px; }
+.sheet__photo img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: var(--radius);
+  border-radius: 2px;
   border: 4px solid var(--paper-raised);
   outline: 1px solid var(--line);
 }
 
-.about__intro {
-  font-size: 1.05rem;
-  max-width: 60ch;
-}
+.sheet__text { min-width: 0; }
 
-.about__facts {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem 2rem;
-  margin: 1.5rem 0 0;
-}
-
-.about__facts div {
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--line);
-}
-
-.about__facts dt {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-soft);
-}
-
-.about__facts dd {
-  margin: 0.15rem 0 0;
-  font-weight: 500;
-}
-
-/* ---------------------------------------------------------------------
-   6. TIJDLIJN — opleiding & werkervaring
-   --------------------------------------------------------------------- */
-.timeline-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2.5rem;
-}
-
-.timeline-heading {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  margin: 0 0 1rem;
-}
-
-.timeline {
-  list-style: none;
+.sheet__name {
+  font-size: clamp(2.4rem, 8vw, 4.25rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
   margin: 0;
-  padding: 0;
-  border-left: 2px solid var(--folder);
 }
 
-.timeline__item {
-  display: flex;
-  flex-direction: column;
-  padding: 0 0 1.4rem 1.2rem;
-}
-
-.timeline__period {
+.sheet__role {
+  margin: 10px 0 0;
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--tag-dark);
 }
 
-.timeline__title {
-  font-weight: 600;
-  margin-top: 0.15rem;
+.sheet__intro { max-width: 58ch; margin: 18px 0 0; font-size: 1.125rem; }
+
+.facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 32px;
+  margin: 28px 0 0;
+}
+.facts div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+.facts dt { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-soft); padding-top: 3px; }
+.facts dd { margin: 0; font-weight: 500; overflow-wrap: anywhere; }
+
+@media (min-width: 640px) {
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-.timeline__place {
-  color: var(--ink-soft);
-  font-size: 0.92rem;
+@media (min-width: 800px) {
+  .sheet {
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 40px;
+    padding: 36px 40px 40px;
+  }
+  .sheet__photo { width: 260px; }
 }
 
 /* ---------------------------------------------------------------------
-   7. DOWNLOAD-KNOP (online cv)
+   7. CV: opleidingen en werkervaring
+   Elke regel: jaartallen links, titel en plaats rechts, dunne lijn ertussen.
    --------------------------------------------------------------------- */
-.download-btn {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--ink);
-  background: var(--folder);
-  padding: 0.9rem 1.6rem;
-  border-radius: var(--radius);
-  transition: background 0.15s ease;
+.cv-grid { display: grid; gap: 32px; }
+@media (min-width: 800px) {
+  .cv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
 }
 
-.download-btn:hover {
-  background: var(--folder-active);
-  color: var(--ink);
+.cv-heading { font-size: 1.2rem; margin: 0 0 8px; }
+.cv-heading--gap { margin-top: 32px; }
+
+.entries { list-style: none; margin: 0; padding: 0; }
+
+.entry {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  column-gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.entry__period {
+  grid-row: span 2;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--tag-dark);
+  padding-top: 2px;
+  font-variant-numeric: tabular-nums;
+}
+.entry__title { font-weight: 600; }
+.entry__place { color: var(--ink-soft); font-size: 0.95rem; }
+
+@media (max-width: 380px) {
+  .entry { grid-template-columns: minmax(0, 1fr); }
+  .entry__period { grid-row: auto; }
+}
+
+.pdf-line {
+  margin: 32px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
 }
 
 /* ---------------------------------------------------------------------
-   8. KAARTEN — hobby's, projecten, stage
+   7b. KAARTEN: projecten en stage
+   card--placeholder = plekhouder: gestippelde rand en een grijs vlak
+   in plaats van een foto, zodat niemand denkt dat het echt is.
    --------------------------------------------------------------------- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 20px;
 }
 
 .card {
@@ -343,115 +386,86 @@ button:focus-visible {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   overflow: hidden;
-  padding-bottom: 1.2rem;
   display: flex;
   flex-direction: column;
 }
 
-.section--alt .card {
-  background: var(--paper);
-}
-
 .card__image {
   width: 100%;
-  height: 170px;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
-  background: var(--line); /* placeholder-kleur zolang er geen echte foto staat */
 }
 
-.card__tag {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--tag-dark);
-  margin: 0.9rem 1rem 0;
-}
+.card__body { padding: 16px 20px 20px; }
+.card__tag { margin: 0; font-family: var(--font-mono); font-size: 0.8rem; color: var(--tag-dark); }
+.card__title { font-size: 1.15rem; margin: 4px 0 6px; }
+.card__text { margin: 0; color: var(--ink-soft); font-size: 1rem; }
 
-.card__title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  margin: 0.3rem 1rem 0;
+.card--placeholder {
+  background: transparent;
+  border: 2px dashed var(--line);
 }
-
-.card__text {
+.card--placeholder .card__image {
+  display: grid;
+  place-items: center;
+  background: var(--line);
   color: var(--ink-soft);
-  font-size: 0.92rem;
-  margin: 0.5rem 1rem 0;
-}
-
-.card__link {
-  margin: 0.8rem 1rem 0;
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  font-weight: 600;
-  text-decoration: none;
+}
+.card--placeholder .card__tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid var(--ink-soft);
+  border-radius: 3px;
+  color: var(--ink-soft);
+}
+.card--placeholder .card__title { color: var(--ink-soft); }
+
+/* ---------------------------------------------------------------------
+   8. HOBBY'S
+   --------------------------------------------------------------------- */
+.hobby {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.hobby + .hobby { margin-top: 24px; }
+
+.hobby__image { width: 100%; }
+
+.hobby__body {
+  display: grid;
+  gap: 20px;
+  padding: 20px 20px 24px;
+}
+.hobby__body h3 { font-size: 1.15rem; margin: 0 0 6px; }
+.hobby__body p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+
+@media (min-width: 800px) {
+  .hobby__body { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; padding: 24px 28px 28px; }
+  .hobby__body--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------------------------------------------------------------------
    9. FOOTER
    --------------------------------------------------------------------- */
 .footer {
-  text-align: center;
-  padding: 2rem 1.5rem 3rem;
-  font-size: 0.85rem;
+  max-width: calc(var(--max-width) + 2 * 24px);
+  margin: 64px auto 0;
+  padding: 20px max(16px, env(safe-area-inset-right)) 40px max(16px, env(safe-area-inset-left));
+  font-size: 0.875rem;
   color: var(--ink-soft);
 }
+.footer p { margin: 0; padding-top: 16px; border-top: 1px solid var(--line); }
 
 /* ---------------------------------------------------------------------
-   10. RESPONSIVE
-   --------------------------------------------------------------------- */
-
-/* Tablet */
-@media (max-width: 800px) {
-  .about {
-    grid-template-columns: 1fr;
-  }
-
-  .about__photo {
-    width: 160px;
-    height: 160px;
-  }
-}
-
-/* Smartphone: klapmenu i.p.v. rij tabs */
-@media (max-width: 640px) {
-  .tabbar__toggle {
-    display: flex;
-  }
-
-  .tabnav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background: var(--ink);
-    padding: 0.5rem 1rem 1rem;
-  }
-
-  .tabnav.is-open {
-    display: flex;
-  }
-
-  .tab {
-    border-radius: var(--radius);
-    transform: none;
-    text-align: left;
-  }
-
-  .about__facts {
-    grid-template-columns: 1fr;
-  }
-
-  .section {
-    padding: 3rem 1.2rem;
-  }
-}
-
-/* ---------------------------------------------------------------------
-   11. DARK MODE (staat bewust BUITEN de @media blokken hierboven)
+   10. DONKERE MODUS
+   Aan met de knop rechtsboven (wordt onthouden). Standaard is de site licht.
    --------------------------------------------------------------------- */
 html.dark {
+  color-scheme: dark;
   --paper: #14181f;
   --paper-raised: #1c222c;
   --ink: #eef0ea;
@@ -459,40 +473,22 @@ html.dark {
   --line: #333c4c;
   --tag: #f0a07c;
   --tag-dark: #e8855a;
+  --bar: #0d1015;
+  --bar-text: #eef0ea;
 }
-
-/* de balk bovenaan blijft donker, de tabs houden donkere tekst */
-html.dark .tabbar,
-html.dark .tabnav {
-  background: #0d1015;
-}
-
-html.dark .tabbar__brand,
-html.dark .theme-toggle {
-  color: #eef0ea;
-}
-
-html.dark .tabbar__toggle span {
-  background: #eef0ea;
-}
-
+/* tabs en knop blijven kraftpapier met donkere tekst */
 html.dark .tab,
-html.dark .download-btn {
-  color: #1c2321;
-}
+html.dark .btn,
+html.dark .tab:hover,
+html.dark .btn:hover { color: #1c2321; }
+html.dark .tab[aria-current] { color: var(--ink); }
+html.dark .skip { color: var(--ink); }
 
-html.dark .tab.is-active {
-  color: var(--ink);
-}
-
-/* de dark-mode knop zelf */
-.theme-toggle {
-  background: none;
-  border: 1px solid var(--folder);
-  color: var(--paper);
-  border-radius: var(--radius);
-  padding: 0.4rem 0.7rem;
-  font-size: 1rem;
-  cursor: pointer;
-  line-height: 1;
+/* ---------------------------------------------------------------------
+   PRINTEN: alleen de inhoud, licht
+   --------------------------------------------------------------------- */
+@media print {
+  .tabbar, .skip, .actions, .pdf-line, .hobby__image { display: none; }
+  body { background: #fff; color: #000; }
+  .sheet, .hobby { border: 0; padding: 0; }
 }

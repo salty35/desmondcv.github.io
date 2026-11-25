@@ -1,0 +1,435 @@
+﻿<!DOCTYPE html>
+<html lang="nl" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>School en opdrachten, Desmond Nientied</title>
+    <meta name="description" content="Mijn modules en schoolopdrachten van mbo 4 Software Development aan het Nova College.">
+    <!-- Beveiliging: alleen bestanden van deze site zelf mogen laden (zelfde regels als index.html). -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self'; script-src 'self'; font-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta name="color-scheme" content="light dark">
+    <link rel="preload" href="fonts/familjen-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/public-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/school.css">
+    <!-- theme.js zet donker/licht vóór de pagina getekend wordt, zodat hij niet knippert -->
+    <script src="js/theme.js"></script>
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+<a class="skip" href="#inhoud">Naar de inhoud</a>
+
+<!-- =====================================================
+     NAVIGATIE
+     Dezelfde balk als op index.html. De links naar de onderdelen van het
+     portfolio beginnen hier met index.html, anders zoekt de browser ze op
+     déze pagina. De tab van deze pagina heeft aria-current="page".
+     ===================================================== -->
+<header class="tabbar">
+    <a class="tabbar__brand" href="index.html#over-mij">Desmond Nientied</a>
+
+    <button class="tabbar__menu" id="menuToggle" type="button" aria-expanded="false" aria-controls="tabnav">Menu</button>
+
+    <nav class="tabnav" id="tabnav" aria-label="Secties">
+        <a href="index.html#over-mij" class="tab">Over mij</a>
+        <a href="index.html#cv" class="tab">Cv</a>
+        <a href="index.html#projecten" class="tab">Projecten</a>
+        <a href="index.html#stage" class="tab">Stage</a>
+        <a href="index.html#hobbys" class="tab">Hobby's</a>
+        <a href="school.html" class="tab" aria-current="page">School</a>
+    </nav>
+
+    <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false">Donker</button>
+</header>
+
+<main id="inhoud" tabindex="-1">
+
+    <!-- =====================================================
+         HOE VOEG IK MIJN WERK TOE?
+  
+         Elke module is één blok (een regel die openklapt).
+         Kopieer dit blok als je een module wilt toevoegen:
+  
+          <li class="module">
+            <details>
+              <summary class="module__row">
+                <span class="module__name">Naam module</span>
+                <span class="status status-done">Afgetekend 13-1-2026</span>
+              </summary>
+              <div class="module__work">
+                <p>Wat heb je gemaakt en met welke techniek?</p>
+                <img src="bestanden/images/school/naam.jpg" width="800" height="450" alt="Screenshot van ...">
+                <p><a href="bestanden/opdrachten/naam.zip" download>Download de opdracht</a></p>
+              </div>
+            </details>
+          </li>
+  
+         Status wijzigen: status-done (afgetekend), status-waiting
+         (af, wacht op paraaf) of status-open (nog niet afgetekend).
+         Punten erbij: zet onder module__name een regel
+           <span class="module__points">5 punten</span>
+         Techniek-label erbij: zet binnen module__name
+           <span class="module__tech">PHP</span>
+  
+         Zet screenshots in bestanden/images/school/ en downloads
+         in bestanden/opdrachten/. De opmaak van deze pagina staat in
+         css/school.css.
+         ===================================================== -->
+
+    <section id="school" class="section section--first" aria-labelledby="school-titel">
+        <h1 id="school-titel" class="section__title">School en opdrachten</h1>
+        <p class="plain">Mijn modules van mbo Software Development, per leerjaar.</p>
+        <p class="school-hint">Met het pijltje kun je het openvouwen om mijn werk te zien.</p>
+
+        <div class="school-year">
+            <h2 class="school-year__title">Leerjaar 1</h2>
+            <ul class="modules">
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Java</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Database Basisbegrippen</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">HTML</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Programmeren Basis</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Programmeren Gevorderd</span>
+                            <span class="status status-done">Afgetekend 11-11-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Webdevelopment</span>
+                            <span class="status status-waiting">moet worden afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p>Webdevelopment-opdracht, gemaakt in PHP. De opdracht is af; alleen de paraaf moet nog gezet worden.</p>
+                            <!-- Voeg hier meer toe: screenshot, link of download (zie de uitleg bovenaan) -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">SQL 1</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Versiebeheer</span>
+                            <span class="status status-done">Afgetekend 13-5-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Keuzedeel 1: Digitale Vaardigheden</span>
+                            <span class="status status-done">Afgetekend 25-3-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+            </ul>
+        </div>
+
+        <div class="school-year">
+            <h2 class="school-year__title">Leerjaar 2</h2>
+            <ul class="modules">
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Normaliseren / Databaseontwerp</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Normaliseren 2</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Object Orientatie (OOP)</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Javascript</span>
+                            <span class="status status-done">Afgetekend 14-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Front-end Development</span>
+                            <span class="status status-done">Afgetekend 17-11-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">De opdracht was om een one page website te maken voor je cv dat is de website waar je nu dit op bekijkd.
+                                Het is sinds het afschrijfen al een keer geupdate.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Vrije keuze</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Project 1</span>
+                            <span class="status status-done">Afgetekend 13-1-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Project 2</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Keuzedeel 2</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Blokstage</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+            </ul>
+        </div>
+
+        <div class="school-year">   
+            <h2 class="school-year__title">Leerjaar 3</h2>
+            <ul class="modules">
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Procesanalyse</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Security / Wet &amp; Regelgeving</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Mobile Development</span>
+                            <span class="status status-done">Afgetekend 17-11-2026</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Project 3</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Keuzedeel 3</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+
+                <li class="module">
+                    <details>
+                        <summary class="module__row">
+                            <span class="module__name">Eindstage</span>
+                            <span class="status status-open">Nog niet afgetekend</span>
+                        </summary>
+                        <div class="module__work">
+                            <p class="module__empty">Hier komt mijn werk voor deze module.</p>
+                            <!-- Verwijder de regel hierboven en voeg hier je werk toe: tekst, screenshot, link of download -->
+                        </div>
+                    </details>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <p>© <span id="jaar">2026</span> Desmond Nientied. Gebouwd met HTML, CSS en JavaScript, gehost op GitHub Pages.</p>
+</footer>
+
+</body>
+</html>
